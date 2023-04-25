@@ -2,6 +2,9 @@
 
 ## 📝 React Fundamentals
 
+- Ex1. Understand HTML DOM element
+- Ex2. Understand React API with ReactDOM & React elements
+
 ###
 
 ## 🪝 React Hooks
