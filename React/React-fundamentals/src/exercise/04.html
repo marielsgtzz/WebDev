@@ -58,11 +58,22 @@ is "renderable" (more React elements, strings, null, numbers, etc.) -->
     };
 
     //Component not used properly
+    // const element = (
+    //   <div className="container">
+    //     <Message subject="World"></Message>
+    //     <Message greetings="Goodbye" subject={5}></Message>
+    //   </div>
+    // );
+
+    // One feature of JSX that you'll find useful is called "React Fragments". It's a
+    // special kind of component from React which allows you to position two elements
+    //  side-by-side rather than just nested.
     const element = (
-      <div className="container">
+      // allows us to render things side by side, the fragment becomes the parent <> = <React.Fragment>
+      <>
         <Message subject="World"></Message>
         <Message greetings="Goodbye" subject={5}></Message>
-      </div>
+      </>
     );
 
     ReactDOM.createRoot(document.getElementById("root")).render(element);
