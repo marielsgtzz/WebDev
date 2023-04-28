@@ -8,6 +8,8 @@ is "renderable" (more React elements, strings, null, numbers, etc.) -->
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <!-- proptype package, usefull when not typescript -->
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
     // function Message({ children }) {
@@ -37,29 +39,29 @@ is "renderable" (more React elements, strings, null, numbers, etc.) -->
 
     //To avoid writing the validation function several times
     //React doesn't do this in production, only in development (mainly due to performance)
-    const PropTypesFunc = {
-      validation(props, propName, componentName) {
-        const type = typeof props[propName];
-        if (type !== "string") {
-          return new Error(
-            `The component ${componentName} needs the prop ${propName} to be a "string" but was passed as a ${type}`
-          );
-        }
-      },
-    };
+    // const PropTypes = {
+    //   string(props, propName, componentName) {
+    //     const type = typeof props[propName];
+    //     if (type !== "string") {
+    //       return new Error(
+    //         `The component ${componentName} needs the prop ${propName} to be a "string" but was passed as a ${type}`
+    //       );
+    //     }
+    //   },
+    // };
 
     //For prop validation.
     //React references this object when creating the component Message
     Message.propTypes = {
-      subject: PropTypesFunc.validation,
-      greetings: PropTypesFunc.validation,
+      subject: PropTypes.string.isRequired,
+      greetings: PropTypes.string.isRequired,
     };
 
     //Component not used properly
     const element = (
       <div className="container">
         <Message subject="World"></Message>
-        <Message greetings="Goodbye" subject="World"></Message>
+        <Message greetings="Goodbye" subject={5}></Message>
       </div>
     );
 
