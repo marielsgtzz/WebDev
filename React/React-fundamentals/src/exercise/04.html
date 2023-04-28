@@ -11,11 +11,6 @@ is "renderable" (more React elements, strings, null, numbers, etc.) -->
   <!-- proptype package, usefull when not typescript -->
   <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
-    // 🐨 Make a function called `message` which returns the JSX we want to share
-    // function Message({ children }) {
-    //   return <div className="message">{children}</div>;
-    // }
-    //const helloJSX = <Message>Hello World</Message>;
     function Message({ subject, greetings }) {
       return (
         <div className="message">
@@ -23,6 +18,34 @@ is "renderable" (more React elements, strings, null, numbers, etc.) -->
         </div>
       );
     }
+    //For prop validation.
+    //React references this object when creating the component Message
+    Message.propTypes = {
+      subject: PropTypes.string.isRequired,
+      greetings: PropTypes.string.isRequired,
+    };
+
+    // One feature of JSX that you'll find useful is called "React Fragments". It's a
+    // special kind of component from React which allows you to position two elements
+    //  side-by-side rather than just nested.
+    const element = (
+      // allows us to render things side by side, the fragment becomes the parent <> = <React.Fragment>
+      <>
+        <Message subject="World"></Message>
+        <Message greetings="Goodbye" subject={5}></Message>
+      </>
+    );
+
+    ReactDOM.createRoot(document.getElementById("root")).render(element);
+  </script>
+</body>
+<!-- 
+// 🐨 Make a function called `message` which returns the JSX we want to share
+    // function Message({ children }) {
+    //   return <div className="message">{children}</div>;
+    // }
+    //const helloJSX = <Message>Hello World</Message>;
+
     //When we create an element with the function as a type we ARE creating a component
     // const helloJS = React.createElement(message, {
     //   children: "Hello World JS React",
@@ -50,32 +73,10 @@ is "renderable" (more React elements, strings, null, numbers, etc.) -->
     //   },
     // };
 
-    //For prop validation.
-    //React references this object when creating the component Message
-    Message.propTypes = {
-      subject: PropTypes.string.isRequired,
-      greetings: PropTypes.string.isRequired,
-    };
-
     //Component not used properly
     // const element = (
     //   <div className="container">
     //     <Message subject="World"></Message>
     //     <Message greetings="Goodbye" subject={5}></Message>
     //   </div>
-    // );
-
-    // One feature of JSX that you'll find useful is called "React Fragments". It's a
-    // special kind of component from React which allows you to position two elements
-    //  side-by-side rather than just nested.
-    const element = (
-      // allows us to render things side by side, the fragment becomes the parent <> = <React.Fragment>
-      <>
-        <Message subject="World"></Message>
-        <Message greetings="Goodbye" subject={5}></Message>
-      </>
-    );
-
-    ReactDOM.createRoot(document.getElementById("root")).render(element);
-  </script>
-</body>
+    // ); -->
