@@ -5,10 +5,11 @@ import * as React from "react";
 import "../box-styles.css";
 
 //className = "" establishes a default value for the className if one is not given
-function Box({ className = "", style, ...otherProps }) {
+function Box({ size, className = "", style, ...otherProps }) {
+  const sizeClassName = size ? `box--${size}` : ""; // size ? means, what to do if size IS specified. : -> otherwise what to do
   return (
     <div
-      className={`box ${className}`}
+      className={`box ${className} ${sizeClassName}`}
       style={{
         fontStyle: "italic",
         ...style,
@@ -20,13 +21,13 @@ function Box({ className = "", style, ...otherProps }) {
 
 //Inline style, object style
 const smallBox = (
-  <Box className="box--small" style={{ backgroundColor: "lightblue" }}>
+  <Box size="small" style={{ backgroundColor: "lightblue" }}>
     small lightblue box
   </Box>
 );
 
 const mediumBox = (
-  <Box className="box box--medium" style={{ backgroundColor: "pink" }}>
+  <Box size="medium" style={{ backgroundColor: "pink" }}>
     medium pink box
   </Box>
 );
