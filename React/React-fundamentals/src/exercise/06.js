@@ -1,38 +1,54 @@
 // Basic Forms
 // http://localhost:3000/isolated/exercise/06.js
+import * as React from "react";
 
-import * as React from 'react'
+function UsernameForm({ onSubmitUsername }) {
+  //const [error, setError] = React.useState(null); //state and mechanism to change the stat
+  const usernameInputRef = React.useRef();
+  const [username, setUsername] = React.useState("");
 
-function UsernameForm({onSubmitUsername}) {
-  // 🐨 add a submit event handler here (`handleSubmit`).
-  // 💰 Make sure to accept the `event` as an argument and call
-  // `event.preventDefault()` to prevent the default behavior of form submit
-  // events (which refreshes the page).
-  // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
-  //
-  // 🐨 get the value from the username input (using whichever method
-  // you prefer from the options mentioned in the instructions)
-  // 💰 For example: event.target.elements[0].value
-  // 🐨 Call `onSubmitUsername` with the value of the input
+  function handleSubmit(event) {
+    event.preventDefault(); //Avoids a full page reload
+    //console.dir(event.target[0]);
+    //const value = event.target[0].value; //Not a very good idea since this way is specific to the order of elements of the form
+    const value = event.target.elements.usernameInput.value;
+    //const value = usernameInputRef.current.value;
+    onSubmitUsername(value);
+  }
 
-  // 🐨 add the onSubmit handler to the <form> below
+  function handleChange(event) {
+    const { value } = event.target;
+    //const isLowerCase = value === value.toLowerCase();
+    //setError(isLowerCase ? null : "Username must be lower case");
+    setUsername(value.toLowerCase());
+  }
 
-  // 🐨 make sure to associate the label to the input.
-  // to do so, set the value of 'htmlFor' prop of the label to the id of input
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
-        <label>Username:</label>
-        <input type="text" />
+        <label htmlFor="usernameInput">Username:</label>{" "}
+        {/* Establishes that this label is for a certain ID, when I click the label I'm directed to the input */}
+        <input
+          ref={usernameInputRef}
+          id="usernameInput"
+          type="text"
+          onChange={handleChange}
+          value={username}
+        />
       </div>
       <button type="submit">Submit</button>
+      {/*
+      <div style={{ color: "red" }}>{error}</div>
+      <button disabled={Boolean(error)} type="submit">
+        Submit
+      </button> */}
     </form>
-  )
+  );
 }
 
 function App() {
-  const onSubmitUsername = username => alert(`You entered: ${username}`)
-  return <UsernameForm onSubmitUsername={onSubmitUsername} />
+  const onSubmitUsername = (username) => alert(`You entered: ${username}`);
+  return <UsernameForm onSubmitUsername={onSubmitUsername} />;
 }
 
-export default App
+export default App;

@@ -7,6 +7,7 @@
 - Ex3. Use of JSX, babel, interpolation and props spread.
 - Ex4. Intro to components with JSX. Prop validation with proptype. React fragment.
 - Ex5. Style through props, encapsulated styling.
+- Ex6. Form submit handler. Input condition & controlling and error message with state change.
 
 ###
 
