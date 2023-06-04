@@ -4,7 +4,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3002/",
+    publicPath: "http://localhost:3000/",
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 3002,
+    port: 3000,
     historyApiFallback: true,
   },
 
@@ -41,10 +41,10 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "counter",
+      name: "color_picker_app",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: { "./CounterReact": "./src/components/Counter.jsx" },
+      exposes: {},
       shared: {
         ...deps,
         react: {

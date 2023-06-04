@@ -41,10 +41,10 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "navbar",
+      name: "mf_picker",
       filename: "remoteEntry.js",
-      remotes: {}, //para llamar micro-frontends
-      exposes: { "./Navbar": "./src/components/Navbar.jsx" }, //para exponer micro-frontends
+      remotes: {},
+      exposes: {},
       shared: {
         ...deps,
         react: {
